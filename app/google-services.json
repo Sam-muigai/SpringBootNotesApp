@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "206605898995",
+    "project_id": "springbootnotes-1f7f9",
+    "storage_bucket": "springbootnotes-1f7f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206605898995:android:8ca13d01c12c3fe4815386",
+        "android_client_info": {
+          "package_name": "com.sam.springbootnotesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206605898995-c1bimri1aerb9gmj6ic7r6tlf1b4i636.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAift57HDnyBD-xl8gNFqRN6QO2_Lh8Z4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206605898995-c1bimri1aerb9gmj6ic7r6tlf1b4i636.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">SpringBootNotesApp</string>
+    <string name="welcome">Welcome to SpringNotes</string>
+    <string name="login_message">Happy to see you again continue from where you left off by logging in.</string>
+    <string name="no_account">"Don't have an account? "</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="login_btn">LOGIN</string>
+    <string name="or">OR</string>
+    <string name="web_client_id">206605898995-c1bimri1aerb9gmj6ic7r6tlf1b4i636.apps.googleusercontent.com</string>
+    <string name="login_request">Please login to your account or create new account to continue</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="email_request">Enter your email</string>
+    <string name="google_desc">Register with google</string>
+    <string name="google_sign_in">SIGN IN WITH GOOGLE</string>
+    <string name="create_account_capitalized">Create Account</string>
+    <string name="login_capitalize">Login</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="search">Search</string>
+    <string name="add_note">Add Notes</string>
+    <string name="save">Add Notes</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="search_notes">Search Notes</string>
+    <string name="back">back</string>
+    <string name="delete">Delete</string>
+    <string name="spring_notes">Spring Notes</string>
+    <string name="sort">sort</string>
+    <string name="log_out">LOG OUT</string>
+</resources>
