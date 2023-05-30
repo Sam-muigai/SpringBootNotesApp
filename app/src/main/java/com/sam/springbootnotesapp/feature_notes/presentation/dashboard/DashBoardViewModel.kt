@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.sam.springbootnotesapp.feature_authentication.presentation.email_password_auth.EmailPasswordAuthentication
+import com.sam.springbootnotesapp.feature_notes.domain.model.Notes
 import com.sam.springbootnotesapp.feature_notes.domain.use_cases.UseCases
 import com.sam.springbootnotesapp.feature_notes.presentation.add_note.Category
 import com.sam.springbootnotesapp.feature_notes.presentation.add_note.Category.Companion.convertToCategoryItem
@@ -15,10 +16,14 @@ import com.sam.springbootnotesapp.feature_notes.presentation.add_note.Category.C
 import com.sam.springbootnotesapp.feature_notes.utils.DataState
 import com.sam.springbootnotesapp.util.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,29 +48,36 @@ class DashBoardViewModel @Inject constructor(
 
     val photoUrl = Firebase.auth.currentUser?.photoUrl
 
-    private fun getAllNotes() {
+
+    private fun getAllNotes(
+        email: String = authentication.userEmail
+    ) {
         viewModelScope.launch {
-            useCases.getAllNotes(authentication.userEmail)
+            useCases.getAllNotes(email)
                 .collect { dataState ->
                     when (dataState) {
-                        is DataState.Success -> {
-                            val data = if (selectedCategory.toCategory() == Category.ALL)
-                                dataState.data
-                            else
-                                dataState.data?.filter { it.category == selectedCategory }
-                            _uiState.value = _uiState.value.copy(
-                                loading = false,
-                                data = data ?: emptyList()
-                            )
-                        }
-                        is DataState.Error -> {
-                            _uiState.value = _uiState.value.copy(
-                                loading = false
-                            )
-                        }
                         is DataState.Loading -> {
                             _uiState.value = _uiState.value.copy(
                                 loading = true
+                            )
+                        }
+
+                        is DataState.Error -> {
+                            _uiEvents.emit(
+                                UiEvents.ShowSnackBar(
+                                    dataState.message ?: "An error occurred"
+                                )
+                            )
+                        }
+
+                        is DataState.Success -> {
+                            val data = onCategoryChange(
+                                selectedCategory.toCategory(),
+                                dataState.data ?: emptyList()
+                            )
+                            _uiState.value = _uiState.value.copy(
+                                data = data ,
+                                loading = false
                             )
                         }
                     }
@@ -98,14 +110,22 @@ class DashBoardViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(
             sortOrderShow = !uiState.value.sortOrderShow
         )
-        if (!uiState.value.sortOrderShow){
+        if (!uiState.value.sortOrderShow) {
             selectedCategory = Category.ALL.convertToCategoryItem().text
         }
     }
 
-    fun onCategoryChange(category: Category) {
+    fun onCategoryChange(
+        category: Category,
+        notes: List<Notes> = emptyList()
+    ): List<Notes> {
         selectedCategory = category.convertToCategoryItem().text
-        getAllNotes()
+        return when (category) {
+            Category.ALL -> notes
+            else -> notes.filter {
+                it.category == category.convertToCategoryItem().text
+            }
+        }
     }
 
 

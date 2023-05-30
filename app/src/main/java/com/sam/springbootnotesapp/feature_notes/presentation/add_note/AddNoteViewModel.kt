@@ -102,7 +102,7 @@ class AddNoteViewModel @Inject constructor(
                             email = emailPasswordAuthentication.userEmail,
                             id = userId,
                             title = title,
-                            synch = synch
+                            synch = false
                         )
                         useCases.addNote(note).collect {
                             when (it) {
@@ -119,6 +119,7 @@ class AddNoteViewModel @Inject constructor(
                                 }
 
                                 is DataState.Error -> {
+
                                     _state.value = _state.value.copy(
                                         loading = false
                                     )

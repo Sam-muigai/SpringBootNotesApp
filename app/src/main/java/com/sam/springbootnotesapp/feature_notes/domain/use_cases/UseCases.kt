@@ -5,5 +5,5 @@ data class UseCases(
     val deleteNoteById: DeleteNoteById,
     val getAllNotes: GetAllNotes,
     val getNoteById: GetNoteById,
-    val getNotesBySearch: GetNotesBySearch
+    val getNotesBySearch: GetNotesBySearch,
 )

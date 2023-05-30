@@ -1,6 +1,8 @@
 package com.sam.springbootnotesapp.feature_notes.data.remote
 
 import com.sam.springbootnotesapp.feature_notes.data.remote.dto.NotesDto
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -19,10 +21,10 @@ interface NotesApi {
     suspend fun getNoteById(@Path("id") id:Int):NotesDto
 
     @DELETE("notes/{id}")
-    suspend fun deleteNoteById(@Path("id") id:Int)
+    suspend fun deleteNoteById(@Path("id") id:Int):Response<ResponseBody>
 
     @POST("notes")
-    suspend fun addNotes(@Body notes:NotesDto)
+    suspend fun addNotes(@Body notes:NotesDto):Response<ResponseBody>
 
     @GET("search/{email}/{searchTerm}")
     suspend fun searchNotes(@Path("email") email: String,@Path("searchTerm") searchTerm:String):List<NotesDto>

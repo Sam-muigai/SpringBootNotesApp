@@ -7,9 +7,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface NotesRepository {
 
-    fun getAllNotes(email:String):Flow<DataState<List<Notes>>>
+    suspend fun getAllNotes(email: String):Flow<DataState<List<Notes>>>
 
     suspend fun getNoteById(id:Int):Notes
+
 
     fun deleteById(id: Int):Flow<DataState<String>>
 

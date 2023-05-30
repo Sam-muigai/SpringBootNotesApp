@@ -19,6 +19,5 @@ import javax.inject.Inject
 class GetAllNotes @Inject constructor(
     private val repository: NotesRepository
 ) {
-    operator fun invoke(email: String): Flow<DataState<List<Notes>>> =
-        repository.getAllNotes(email)
+    suspend operator fun invoke(email:String): Flow<DataState<List<Notes>>> = repository.getAllNotes(email)
 }

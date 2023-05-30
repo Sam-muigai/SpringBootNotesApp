@@ -20,8 +20,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -68,6 +70,7 @@ fun SearchScreen(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreenContent(
     modifier: Modifier = Modifier,
@@ -79,81 +82,88 @@ fun SearchScreenContent(
     onBackClicked: () -> Unit,
     onDeleteClicked: (Int) -> Unit
 ) {
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Row {
-                Icon(
-                    modifier = Modifier.clickable {
-                        onBackClicked.invoke()
-                    },
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back)
-                )
+        Scaffold { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center
+                    modifier = Modifier.padding(horizontal = 8.dp)
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.search_notes),
-                        style = MaterialTheme.typography.titleSmall.copy(
-                            fontFamily = lato
-                        )
+                    Icon(
+                        modifier = Modifier.clickable {
+                            onBackClicked.invoke()
+                        },
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = stringResource(id = R.string.back)
                     )
-                }
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-
-                DetailInput(
-                    modifier = Modifier.focusRequester(focusRequester),
-                    placeHolder = stringResource(id = R.string.search),
-                    text = searchTerm,
-                    onValueChange = onSearchTermChange
-                )
-            }
-            Spacer(modifier = Modifier.height(20.dp))
-            AnimatedVisibility(
-                state.loading,
-                enter = fadeIn(),
-                exit = fadeOut()
-            ) {
-                LazyColumn {
-                    items(5) {
-                        LoadingTodoItem()
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.search_notes),
+                            style = MaterialTheme.typography.titleSmall.copy(
+                                fontFamily = lato
+                            )
+                        )
                     }
                 }
-            }
-            LazyColumn {
-                items(state.data) { note ->
-                    val category = note.category.toCategory().convertToCategoryItem()
-                    NoteItem(
-                        modifier = Modifier,
-                        title = note.title,
-                        icon = category.icon,
-                        description = note.description,
-                        category = category.text,
-                        onClick = {
-                            note.id?.let {
-                                onNoteClicked(it)
-                            }
-                        },
-                        color = category.color,
-                        onDeleteClicked = {
-                            note.id?.let { onDeleteClicked(it) }
-                        }
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+
+                    DetailInput(
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .focusRequester(focusRequester),
+                        placeHolder = stringResource(id = R.string.search),
+                        text = searchTerm,
+                        onValueChange = onSearchTermChange
                     )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                AnimatedVisibility(
+                    state.loading,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    LazyColumn {
+                        items(5) {
+                            LoadingTodoItem()
+                        }
+                    }
+                }
+                LazyColumn {
+                    items(state.data) { note ->
+                        val category = note.category.toCategory().convertToCategoryItem()
+                        NoteItem(
+                            modifier = Modifier,
+                            title = note.title,
+                            icon = category.icon,
+                            description = note.description,
+                            category = category.text,
+                            onClick = {
+                                note.id?.let {
+                                    onNoteClicked(it)
+                                }
+                            },
+                            color = category.color,
+                            onDeleteClicked = {
+                                note.id?.let { onDeleteClicked(it) }
+                            }
+                        )
+                    }
                 }
             }
         }
