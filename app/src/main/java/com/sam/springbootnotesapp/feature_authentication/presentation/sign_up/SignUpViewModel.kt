@@ -5,14 +5,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sam.springbootnotesapp.feature_authentication.presentation.ConfirmPasswordValidationException
-import com.sam.springbootnotesapp.feature_authentication.presentation.EmailValidationException
-import com.sam.springbootnotesapp.feature_authentication.presentation.PasswordValidationException
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.ConfirmPasswordValidationException
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.EmailValidationException
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.PasswordValidationException
 import com.sam.springbootnotesapp.feature_authentication.presentation.email_password_auth.EmailPasswordAuthentication
 import com.sam.springbootnotesapp.feature_authentication.presentation.google_authentication.GoogleAuthClient
-import com.sam.springbootnotesapp.feature_authentication.presentation.verifyConfirmPassword
-import com.sam.springbootnotesapp.feature_authentication.presentation.verifyEmail
-import com.sam.springbootnotesapp.feature_authentication.presentation.verifyPassword
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.verifyConfirmPassword
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.verifyEmail
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.verifyPassword
 import com.sam.springbootnotesapp.util.Routes
 import com.sam.springbootnotesapp.util.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,7 +51,7 @@ class SignUpViewModel @Inject constructor(
                         _state.value = _state.value.copy(
                             emailError = ""
                         )
-                    }catch (e:EmailValidationException){
+                    }catch (e: EmailValidationException){
                         e.message?.let {
                             _state.value = _state.value.copy(
                                 emailError = it
@@ -72,7 +72,7 @@ class SignUpViewModel @Inject constructor(
                         _state.value = _state.value.copy(
                             passwordError = ""
                         )
-                    }catch (e:PasswordValidationException){
+                    }catch (e: PasswordValidationException){
                         e.message?.let {
                             _state.value = _state.value.copy(
                                 passwordError = it
@@ -93,7 +93,7 @@ class SignUpViewModel @Inject constructor(
                         _state.value = _state.value.copy(
                             confirmPasswordError = ""
                         )
-                    }catch (e:ConfirmPasswordValidationException){
+                    }catch (e: ConfirmPasswordValidationException){
                         e.message?.let {
                             _state.value = _state.value.copy(
                                 confirmPasswordError = it

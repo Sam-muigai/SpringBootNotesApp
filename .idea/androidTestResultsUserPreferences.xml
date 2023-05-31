@@ -16,6 +16,49 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-1540995486">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.100.32:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="TECNO" value="120" />
+                  <entry key="TECNO&#10; TECNO KH6" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-852338871">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.100.32:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="TECNO&#10; TECNO KH6" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-791297226">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.100.32:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="TECNO&#10; TECNO KH6" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="352328050">
           <value>
             <AndroidTestResultsTableState>
@@ -29,6 +72,20 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="583705237">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.100.32:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="TECNO&#10; TECNO KH6" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="956786748">
           <value>
             <AndroidTestResultsTableState>
@@ -36,6 +93,34 @@
                 <map>
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_XL_API_25" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1722711237">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.100.32:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="TECNO&#10; TECNO KH6" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1771187906">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="192.168.100.32:5555" value="120" />
+                  <entry key="Duration" value="90" />
+                  <entry key="TECNO&#10; TECNO KH6" value="120" />
                   <entry key="Tests" value="360" />
                 </map>
               </option>

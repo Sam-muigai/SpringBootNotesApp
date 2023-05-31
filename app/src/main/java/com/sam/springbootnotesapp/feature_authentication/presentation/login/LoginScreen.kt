@@ -25,11 +25,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sam.springbootnotesapp.R
 import com.sam.springbootnotesapp.feature_authentication.presentation.components.DetailInput
@@ -45,7 +47,7 @@ import com.sam.springbootnotesapp.util.UiEvents
 @Composable
 fun LoginScreen(
     onGoogleSignIn: () -> Unit,
-    viewModel: LoginViewModel,
+    viewModel: LoginViewModel = hiltViewModel(),
     onBackClicked: () -> Unit,
     onLoginClicked: (String) -> Unit,
     context: Context
@@ -57,12 +59,10 @@ fun LoginScreen(
                 is UiEvents.Navigate -> {
                     onLoginClicked(event.route)
                 }
-                is UiEvents.PopBackStack -> {
-                    onBackClicked()
-                }
                 is UiEvents.ShowSnackBar -> {
                     Toast.makeText(context, event.message, Toast.LENGTH_LONG).show()
                 }
+                else -> Unit
             }
         }
     }
@@ -71,6 +71,7 @@ fun LoginScreen(
         email = viewModel.email,
         password = viewModel.password,
         onEvent = viewModel::onEvent,
+        onBackClicked = onBackClicked,
         state = state,
         onGoogleSignIn = onGoogleSignIn
     )
@@ -81,6 +82,7 @@ fun LoginScreen(
     modifier: Modifier = Modifier,
     email: String,
     password: String,
+    onBackClicked: () -> Unit,
     onEvent: (LoginEvents) -> Unit,
     state: LoginScreenState,
     onGoogleSignIn: () -> Unit
@@ -99,9 +101,7 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Top
         ) {
             TopBar(
-                onIconClick = {
-                    onEvent(LoginEvents.OnBackClicked)
-                }
+                onIconClick = onBackClicked
             )
             Spacer(modifier = Modifier.height(40.dp))
             Text(
@@ -120,6 +120,7 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(5.dp))
             DetailInput(
+                modifier = Modifier.testTag("email"),
                 text = email,
                 placeHolder = stringResource(id = R.string.email_request),
                 onValueChange = {
@@ -146,7 +147,7 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(5.dp))
             PasswordInput(
-                modifier = Modifier,
+                modifier = Modifier.testTag("password_input"),
                 text = password,
                 showPassword = state.showPassword,
                 onValueChange = {
@@ -174,7 +175,8 @@ fun LoginScreen(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(35.dp),
+                        modifier = Modifier.size(35.dp)
+                            .testTag("loading"),
                         strokeWidth = 1.dp
                     )
                 }

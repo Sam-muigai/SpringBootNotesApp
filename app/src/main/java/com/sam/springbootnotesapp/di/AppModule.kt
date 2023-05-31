@@ -1,5 +1,6 @@
 package com.sam.springbootnotesapp.di
 
+
 import android.content.Context
 import com.google.android.gms.auth.api.identity.Identity
 import com.sam.springbootnotesapp.feature_authentication.presentation.email_password_auth.EmailPasswordAuthentication
@@ -32,7 +33,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideEmailPasswordAuthentication(): EmailPasswordAuthentication {
-        return EmailPasswordAuthenticationImpl();
+        return EmailPasswordAuthenticationImpl()
     }
 
     @Provides

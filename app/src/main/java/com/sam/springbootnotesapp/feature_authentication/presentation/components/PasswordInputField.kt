@@ -84,7 +84,8 @@ fun PasswordInput(
                     innerTextField()
                     if (text.isNotEmpty()) {
                         IconEye(
-                            modifier = Modifier.size(23.dp),
+                            modifier = Modifier.size(23.dp)
+                                .testTag("eye_icon"),
                             icon = icon,
                             onEyeClicked = onEyeClicked
                         )

@@ -1,4 +1,4 @@
-package com.sam.springbootnotesapp.feature_authentication.presentation
+package com.sam.springbootnotesapp.feature_authentication.presentation.utils
 
 import kotlin.jvm.Throws
 

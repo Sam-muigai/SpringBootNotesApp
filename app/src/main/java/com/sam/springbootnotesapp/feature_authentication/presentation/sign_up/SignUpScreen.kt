@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -140,7 +141,7 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(5.dp))
             PasswordInput(
                 text = password,
-                modifier = Modifier,
+                modifier = Modifier.testTag("password_input"),
                 placeHolder = stringResource(id = R.string.password),
                 showPassword = state.showPassword,
                 onValueChange = {
@@ -195,7 +196,8 @@ fun SignUpScreen(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(35.dp),
+                        modifier = Modifier.size(35.dp)
+                            .testTag("loading"),
                         strokeWidth = 1.dp
                     )
                 }

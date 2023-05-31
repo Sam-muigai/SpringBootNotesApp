@@ -1,18 +1,15 @@
 package com.sam.springbootnotesapp.feature_authentication.presentation.login
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.AuthResult
-import com.sam.springbootnotesapp.feature_authentication.presentation.EmailValidationException
-import com.sam.springbootnotesapp.feature_authentication.presentation.PasswordValidationException
 import com.sam.springbootnotesapp.feature_authentication.presentation.email_password_auth.EmailPasswordAuthentication
 import com.sam.springbootnotesapp.feature_authentication.presentation.google_authentication.GoogleAuthClient
-import com.sam.springbootnotesapp.feature_authentication.presentation.verifyEmail
-import com.sam.springbootnotesapp.feature_authentication.presentation.verifyPassword
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.verifyEmail
+import com.sam.springbootnotesapp.feature_authentication.presentation.utils.verifyPassword
 import com.sam.springbootnotesapp.util.Routes
 import com.sam.springbootnotesapp.util.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +18,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import okhttp3.Route
 import javax.inject.Inject
 
 @HiltViewModel

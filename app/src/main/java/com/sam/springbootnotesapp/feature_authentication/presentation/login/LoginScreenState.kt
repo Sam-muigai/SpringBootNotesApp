@@ -5,6 +5,5 @@ data class LoginScreenState(
     val passwordError:String = "",
     val loading:Boolean = false,
     val showPassword:Boolean = false,
-    val isIconVisible:Boolean = false,
     val signedIn:Boolean = false
 )

@@ -40,7 +40,6 @@ class NotesRepositoryImpl @Inject constructor(
 
     }
 
-
     override suspend fun getNoteById(id: Int) = api.getNoteById(id).toNotes()
 
 
