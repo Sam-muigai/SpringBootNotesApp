@@ -30,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -92,7 +93,7 @@ fun DashBoardContent(
     onAddNote: (String) -> Unit,
     photoUrl: Uri?,
     selectedText: String,
-    initialChar:String,
+    initialChar: String,
     categories: List<Category>,
     onPhotoClicked: () -> Unit,
     onSortClicked: () -> Unit,
@@ -132,6 +133,7 @@ fun DashBoardContent(
                 )
                 AnimatedVisibility(visible = state.sortOrderShow) {
                     CategoryFilter(
+                        modifier = Modifier.testTag("category_filter"),
                         categories = categories,
                         selectedCategory = selectedText.toCategory(),
                         onRadioClicked = onCategorySelect
@@ -141,7 +143,8 @@ fun DashBoardContent(
                     DetailInput(
                         modifier = Modifier
                             .padding(8.dp)
-                            .clickable { onSearchClicked() },
+                            .clickable { onSearchClicked() }
+                            .testTag("search_bar"),
                         placeHolder = stringResource(id = R.string.search),
                         leadingIcon = Icons.Default.Search,
                         text = "",
@@ -155,13 +158,17 @@ fun DashBoardContent(
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
-                    LazyColumn(contentPadding = PaddingValues(top = 30.dp, bottom = 50.dp)) {
+                    LazyColumn(
+                        modifier = Modifier.testTag("loading"),
+                        contentPadding = PaddingValues(top = 30.dp, bottom = 50.dp)
+                    ) {
                         items(5) {
                             LoadingTodoItem()
                         }
                     }
                 }
                 LazyColumn(
+                    modifier = Modifier.testTag("notes"),
                     contentPadding = PaddingValues(top = 30.dp, bottom = 50.dp)
                 ) {
                     items(state.data) { note ->

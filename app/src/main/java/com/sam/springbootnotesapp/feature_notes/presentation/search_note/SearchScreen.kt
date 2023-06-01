@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -138,13 +139,17 @@ fun SearchScreenContent(
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
-                    LazyColumn {
+                    LazyColumn(
+                        modifier = Modifier.testTag("loading")
+                    ) {
                         items(5) {
                             LoadingTodoItem()
                         }
                     }
                 }
-                LazyColumn {
+                LazyColumn(
+                    modifier = Modifier.testTag("data")
+                ) {
                     items(state.data) { note ->
                         val category = note.category.toCategory().convertToCategoryItem()
                         NoteItem(
